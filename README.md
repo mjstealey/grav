@@ -26,8 +26,9 @@ docker pull mjstealey/grav-admin:latest
 ```bash
 docker run --name grav -p 80:80 mjstealey/grav-admin:latest
 ```
+- **NOTE**: Generally the `-d` flag would be used in the above call to daemonize the process
 
-This will deploy a default installation of grav-admin at [http://localhost](http://localhost).
+The running site can be found at [http://localhost](http://localhost).
 
-On initial deploy the user will be redirected to [http://localhost/admin](http://localhost/admin) to register the Admin User.
+- On first use the user will be redirected to [http://localhost/admin](http://localhost/admin) to register an Admin User for the installation.
 ![Grav Register Admin User](https://user-images.githubusercontent.com/5332509/27509308-a20baf8a-58c7-11e7-8371-d1d6c6edd0a4.png)
