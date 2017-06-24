@@ -1,6 +1,14 @@
 # grav
 Docker implementation of [grav-admin](https://getgrav.org) using [debian:stretch](https://hub.docker.com/_/debian/)
 
+**WORK IN PROGRESS**:
+
+- [x] Basic implementation in Docker
+- [ ] Extend pages directories to local volume mount
+- [ ] Allow UID/GID setting within container for host user permissions on mounted volumes
+- [ ] SSL integration - self generated certs / LetsEncrypt hooks
+- [ ] Nginx reverse proxy
+
 ## Supported tags and respective Dockerfile links
 
 - 1.3.0-rc.4, latest ([1.3.0-rc.4/Dockerfile](https://github.com/mjstealey/grav/blob/master/1.3.0-rc.4/Dockerfile))
