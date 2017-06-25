@@ -31,6 +31,14 @@ ADD docker-entrypoint.sh /docker-entrypoint.sh
 ENV SERVERADMIN=admin@localhost
 ENV SERVERNAME=localhost
 ENV SERVERALIAS=localhost
+# default: uid=33(www-data) gid=33(www-data) groups=33(www-data)
+ENV UID_WWW_DATA=33
+ENV GID_WWW_DATA=33
 
+WORKDIR /var/www/html
+VOLUME ["/var/www/html"]
+
+EXPOSE 80 443
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD ["run"]
