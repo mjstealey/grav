@@ -22,8 +22,8 @@ _grav_conf () {
   echo "Order allow,deny" >> $OUTFILE
   echo "allow from all" >> $OUTFILE
   echo "</Directory>" >> $OUTFILE
-  echo "ErrorLog /var/log/apache2/your-domain.com-error_log" >> $OUTFILE
-  echo "CustomLog /var/log/apache2/your-domain.com-access_log common" >> $OUTFILE
+  echo "ErrorLog /var/log/apache2/${SERVERNAME}-error_log" >> $OUTFILE
+  echo "CustomLog /var/log/apache2/${SERVERNAME}-access_log common" >> $OUTFILE
   echo "</VirtualHost>" >> $OUTFILE
   ln -s $OUTFILE /etc/apache2/sites-enabled/grav.conf
 }
