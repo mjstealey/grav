@@ -11,6 +11,7 @@ _update_uid_gid() {
 
 _grav_conf () {
   local OUTFILE=/etc/apache2/sites-available/grav.conf
+  local OUTFILE_SYMLINK=/etc/apache2/sites-enabled/grav.conf
   echo "<VirtualHost *:80>" > $OUTFILE
   echo "ServerAdmin ${SERVERADMIN}" >> $OUTFILE
   echo "DocumentRoot /var/www/html/" >> $OUTFILE
@@ -25,23 +26,24 @@ _grav_conf () {
   echo "ErrorLog /var/log/apache2/${SERVERNAME}-error_log" >> $OUTFILE
   echo "CustomLog /var/log/apache2/${SERVERNAME}-access_log common" >> $OUTFILE
   echo "</VirtualHost>" >> $OUTFILE
-  ln -s $OUTFILE /etc/apache2/sites-enabled/grav.conf
+  rm -f $OUTFILE_SYMLINK
+  ln -s $OUTFILE $OUTFILE_SYMLINK
 }
 
 _var_www_html () {
-  if ! [ "$(ls -A /var/www/html)" ]; then
-    cd /var/www/html/
-    unzip /grav-admin-v1.3.0-rc.4.zip
-    cd grav-admin
-    cp -a * ..
-    cp .htaccess ..
-    chown -R www-data: /var/www/html/
-  fi
+  cd /var/www/html/
+  unzip /grav-admin-v1.3.0-rc.4.zip
+  cd grav-admin
+  cp -a * ..
+  cp .htaccess ..
+  chown -R www-data: /var/www/html/
 }
 
 if [[ "$1" = 'run' ]]; then
   _update_uid_gid
-  _var_www_html
+  if ! [ "$(ls -A /var/www/html)" ]; then
+    _var_www_html
+  fi
   _grav_conf
   a2enmod rewrite
   /etc/init.d/apache2 restart

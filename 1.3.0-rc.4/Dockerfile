@@ -23,7 +23,7 @@ RUN wget https://github.com/getgrav/grav/releases/download/1.3.0-rc.4/grav-admin
   && cd grav-admin \
   && cp -a * .. \
   && cp .htaccess .. \
-  && rm -f index.html \
+  && rm -f /var/www/html/index.html \
   && chown -R www-data: /var/www/html/
 
 ADD docker-entrypoint.sh /docker-entrypoint.sh
